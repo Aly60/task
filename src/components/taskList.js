@@ -38,77 +38,92 @@ const TaskList = ({ onEditTask }) => {
       <Typography variant="h5" gutterBottom>
         Task List
       </Typography>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="tasks">
-          {(provided) => (
-            <List {...provided.droppableProps} ref={provided.innerRef}>
-              {tasks.map((task, index) => (
-                <Draggable
-                  key={task.id}
-                  draggableId={task.id.toString()}
-                  index={index}
-                >
-                  {(provided) => (
-                    <Card
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      sx={{ mb: 2 }}
-                    >
-                      <CardContent>
-                        <ListItem
-                          secondaryAction={
-                            <>
-                              <IconButton
-                                edge="end"
-                                aria-label="edit"
-                                onClick={() => onEditTask(task.id)}
+      <Card
+        sx={{
+          padding: 2,
+          border: "1px solid #ddd",
+          borderRadius: "8px",
+        }}
+      >
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="tasks">
+            {(provided) => (
+              <List {...provided.droppableProps} ref={provided.innerRef}>
+                {tasks.map((task, index) => (
+                  <Draggable
+                    key={task.id}
+                    draggableId={task.id.toString()}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <Card
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        sx={{
+                          mb: 2,
+                          border: "1px solid #ccc",
+                          borderRadius: "8px",
+                        }}
+                      >
+                        <CardContent>
+                          <ListItem
+                            secondaryAction={
+                              <>
+                                <IconButton
+                                  edge="end"
+                                  aria-label="edit"
+                                  onClick={() => onEditTask(task.id)}
+                                >
+                                  <EditIcon />
+                                </IconButton>
+                                <IconButton
+                                  edge="end"
+                                  aria-label="delete"
+                                  onClick={() => dispatch(deleteTask(task.id))}
+                                >
+                                  <DeleteIcon />
+                                </IconButton>
+                              </>
+                            }
+                          >
+                            <Checkbox
+                              checked={task.completed}
+                              onChange={() => dispatch(toggleComplete(task.id))}
+                            />
+                            <Box>
+                              <Typography
+                                variant="h6"
+                                style={{
+                                  textDecoration: task.completed
+                                    ? "line-through"
+                                    : "none",
+                                }}
                               >
-                                <EditIcon />
-                              </IconButton>
-                              <IconButton
-                                edge="end"
-                                aria-label="delete"
-                                onClick={() => dispatch(deleteTask(task.id))}
+                                {task.name}
+                              </Typography>
+                              <Typography variant="body2" color="textSecondary">
+                                {task.description}
+                              </Typography>
+                              <Typography
+                                variant="caption"
+                                color="textSecondary"
                               >
-                                <DeleteIcon />
-                              </IconButton>
-                            </>
-                          }
-                        >
-                          <Checkbox
-                            checked={task.completed}
-                            onChange={() => dispatch(toggleComplete(task.id))}
-                          />
-                          <Box>
-                            <Typography
-                              variant="h6"
-                              style={{
-                                textDecoration: task.completed
-                                  ? "line-through"
-                                  : "none",
-                              }}
-                            >
-                              {task.name}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary">
-                              {task.description}
-                            </Typography>
-                            <Typography variant="caption" color="textSecondary">
-                              Due: {task.dueDate}
-                            </Typography>
-                          </Box>
-                        </ListItem>
-                      </CardContent>
-                    </Card>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </List>
-          )}
-        </Droppable>
-      </DragDropContext>
+                                Due: {task.dueDate}
+                              </Typography>
+                            </Box>
+                          </ListItem>
+                        </CardContent>
+                      </Card>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </List>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </Card>
     </Box>
   );
 };

@@ -19,7 +19,7 @@ const AddTaskForm = ({ open, handleClose }) => {
   const [errors, setErrors] = useState({ taskName: false, dueDate: false });
 
   const dispatch = useDispatch();
-  const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+  const today = new Date().toISOString().split("T")[0]; 
 
   const validateForm = () => {
     const newErrors = {
@@ -83,6 +83,7 @@ const AddTaskForm = ({ open, handleClose }) => {
             label="Task Name"
             type="text"
             fullWidth
+            required
             value={taskName}
             onChange={(e) => setTaskName(e.target.value)}
             sx={{
@@ -104,6 +105,7 @@ const AddTaskForm = ({ open, handleClose }) => {
             fullWidth
             multiline
             rows={4}
+            required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             sx={{
@@ -124,6 +126,7 @@ const AddTaskForm = ({ open, handleClose }) => {
             type="date"
             fullWidth
             InputLabelProps={{ shrink: true }}
+            required
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
             inputProps={{ min: today }}

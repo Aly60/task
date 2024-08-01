@@ -42,7 +42,7 @@ const EditTaskForm = ({ open, handleClose, taskId }) => {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
       <DialogTitle>Edit Task</DialogTitle>
       <DialogContent>
         <Box
@@ -56,8 +56,11 @@ const EditTaskForm = ({ open, handleClose, taskId }) => {
             label="Task Name"
             type="text"
             fullWidth
+            required
             value={taskName}
             onChange={(e) => setTaskName(e.target.value)}
+            error={!taskName}
+            helperText={!taskName && "taskName is required"}
           />
           <TextField
             label="Description"
@@ -65,16 +68,22 @@ const EditTaskForm = ({ open, handleClose, taskId }) => {
             fullWidth
             multiline
             rows={3}
+            required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            error={!description}
+            helperText={!description && "Description is required"}
           />
           <TextField
             label="Due Date"
             type="date"
             fullWidth
             InputLabelProps={{ shrink: true }}
+            required
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
+            error={!dueDate}
+            helperText={!dueDate && "due is required"}
           />
         </Box>
       </DialogContent>
