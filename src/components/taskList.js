@@ -35,7 +35,7 @@ const TaskList = ({ onEditTask }) => {
 
   return (
     <Box mt={4}>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h4" gutterBottom>
         Task List
       </Typography>
       <Card

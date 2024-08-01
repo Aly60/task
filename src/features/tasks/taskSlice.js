@@ -14,7 +14,7 @@ const saveState = (state) => {
     const serializedState = JSON.stringify(state);
     localStorage.setItem("tasks", serializedState);
   } catch (e) {
-    // Ignore write errors
+    console.log("error saving state to local storage", e);
   }
 };
 

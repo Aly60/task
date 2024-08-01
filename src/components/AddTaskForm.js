@@ -19,7 +19,8 @@ const AddTaskForm = ({ open, handleClose }) => {
   const [errors, setErrors] = useState({ taskName: false, dueDate: false });
 
   const dispatch = useDispatch();
-  const today = new Date().toISOString().split("T")[0]; 
+
+  const today = new Date().toISOString().split("T")[0];
 
   const validateForm = () => {
     const newErrors = {
