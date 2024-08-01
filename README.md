@@ -2,6 +2,21 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Dependencies
+- **React**: For building the core user interface.
+- **Redux Toolkit**: For managing global state in the application.
+- **Material-UI**: For styling the application with pre-built responsive components.
+- **react-beautiful-dnd**: For implementing drag-and-drop features for tasks.
+- 
+-npm install @reduxjs/toolkit
+-npm install react-redux
+-npm install @mui/material
+-npm install @emotion/react
+-npm install @emotion/styled
+-npm install @mui/icons-material
+-npm install react-beautiful-dnd
+
+
 ## Available Scripts
 
 In the project directory, you can run:
